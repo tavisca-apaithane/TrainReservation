@@ -12,7 +12,7 @@ public class MyController {
     @GetMapping("/train")
     public String getTrain(){
         TicketAllocationService ticketService = new TicketAllocationService(trainRepo);
-        String s = ticketService.getSeatNumber("1").toString();
+        String s = ticketService.getSeatNumber("1","20-12-19").toString();
         return s;
     }
 }

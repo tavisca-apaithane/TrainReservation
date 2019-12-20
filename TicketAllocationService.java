@@ -16,7 +16,7 @@ public class TicketAllocationService {
        this.trainRepo = trainRepo;
    }
 
-    public Integer getSeatNumber(String trainId){
+    public Integer getSeatNumber(String trainId, String date){
 
         Optional<Train> optional = trainRepo.findById(trainId);
 
@@ -24,8 +24,10 @@ public class TicketAllocationService {
            Train train = optional.get();
            SeatAvailabilityCalculator calculator = new SeatAvailabilityCalculator(train.getTrainRoute(), train.getTrainCapacity());
            for(TrainBooking booking: train.getBookings()){
-               calculator.numberOfSeatsArrayModify(booking.getStartStation(), booking.getEndStation());
-           }
+               if(booking.getDate().equals(date)) {
+                   calculator.numberOfSeatsArrayModify(booking.getStartStation(), booking.getEndStation());
+               }
+               }
            if(calculator.arrayMin==0)
                return -1;
            else return calculator.arrayMin;
