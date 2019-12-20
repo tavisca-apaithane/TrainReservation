@@ -12,14 +12,16 @@ public class Train {
     private String trainId;
     private String trainName;
     private String trainRoute;
+    private String trainCapacity;
     @ElementCollection
     private List<TrainBooking> bookings;
 
     public Train(){}
-    public Train(String trainId, String trainName, String trainRoute, List<TrainBooking> bookings) {
+    public Train(String trainId, String trainName, String trainRoute, String trainCapacity, List<TrainBooking> bookings) {
         this.trainId = trainId;
         this.trainName = trainName;
         this.trainRoute = trainRoute;
+        this.trainCapacity = trainCapacity;
         this.bookings = bookings;
     }
 
@@ -49,6 +51,14 @@ public class Train {
 
     public List<TrainBooking> getBookings() {
         return bookings;
+    }
+
+    public String getTrainCapacity() {
+        return trainCapacity;
+    }
+
+    public void setTrainCapacity(String trainCapacity) {
+        this.trainCapacity = trainCapacity;
     }
 
     public void setBookings(List<TrainBooking> bookings) {
