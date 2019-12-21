@@ -1,9 +1,6 @@
 package train;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,14 +13,50 @@ public class Train {
     @ElementCollection
     private List<TrainBooking> bookings;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Station> stations;
+    private String trainArrivalAtStartStation;
+    private String trainDepartureFromStartStation;
+
     public Train(){}
-    public Train(String trainId, String trainName, String trainRoute, String trainCapacity, List<TrainBooking> bookings) {
+    public Train(String trainId, String trainName, String trainRoute, String trainCapacity,
+                 String trainArrivalAtStartStation, String trainDepartureFromStartStation,
+                 List<TrainBooking> bookings, List<Station> stations) {
         this.trainId = trainId;
         this.trainName = trainName;
         this.trainRoute = trainRoute;
         this.trainCapacity = trainCapacity;
+        this.trainArrivalAtStartStation = trainArrivalAtStartStation;
+        this.trainDepartureFromStartStation = trainDepartureFromStartStation;
         this.bookings = bookings;
+        this.stations = stations;
     }
+
+
+    public String getTrainArrivalAtStartStation() {
+        return trainArrivalAtStartStation;
+    }
+
+    public void setTrainArrivalAtStartStation(String trainArrivalAtStartStation) {
+        this.trainArrivalAtStartStation = trainArrivalAtStartStation;
+    }
+
+    public String getTrainDepartureFromStartStation() {
+        return trainDepartureFromStartStation;
+    }
+
+    public void setTrainDepartureFromStartStation(String trainDepartureFromStartStation) {
+        this.trainDepartureFromStartStation = trainDepartureFromStartStation;
+    }
+
+    public List<Station> getStations() {
+        return stations;
+    }
+
+    public void setStations(List<Station> stations) {
+        this.stations = stations;
+    }
+
 
     public String getTrainId() {
         return trainId;

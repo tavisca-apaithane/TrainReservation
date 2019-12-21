@@ -1,16 +1,22 @@
 package train;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Station {
+    public List<Train> getTrains() {
+        return trains;
+    }
+
+    public void setTrains(List<Train> trains) {
+        this.trains = trains;
+    }
+
     @Id
     private String stationName;
-    @ElementCollection
-    List<Train> trains;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Train> trains;
 
     public Station(){}
     public Station(String stationName, List<Train> trains ){
