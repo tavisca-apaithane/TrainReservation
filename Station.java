@@ -15,8 +15,10 @@ public class Station {
 
     @Id
     private String stationName;
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "stations")
     private List<Train> trains;
+
 
     public Station(){}
     public Station(String stationName, List<Train> trains ){
