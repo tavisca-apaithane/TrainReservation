@@ -17,16 +17,6 @@ public class MyController {
     @GetMapping("/train")
     public String getTrain(){
 
-        TrainDAO trainManager = new TrainDAO(trainRepo, stationRepo);
-        System.out.println(trainManager.addNewTrainWithItsStations("1", "maharaja express",
-                "nashik-delhi", "10", "8.30 pm",
-                "8.35 pm"));
-        trainManager.doBooking("1", "1", "abhishek", "22", "male",
-                "nashik", "mumbai", "21-12-19");
-
-
-        Train train = (Train) trainRepo.findById("1").get();
-        System.out.println("here");
-        return train.getBookings().get(0).getPassengerName();
+        return Integer.toString(new TicketAllocationService(trainRepo).getSeatNumber("1","22-12-19"));
     }
 }

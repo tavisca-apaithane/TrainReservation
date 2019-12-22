@@ -7,7 +7,9 @@ import train.dp.StationRepo;
 import train.dp.TrainRepo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class StationDao {
 
@@ -35,12 +37,16 @@ public class StationDao {
         if(stationRepo.findById(stationName).isPresent()) {
             trains = stationRepo.findById(stationName).get().getTrains();
         }
+        if(trains!=null) {
+            Set<Train> trainSet = new HashSet<>(trains);
+            trains = new ArrayList<>(trainSet);
+        }
         return trains;
     }
 
     public List<String> getListOfIdsOfTrainsPassing(String stationName){
         List<Train> trains = this.getListOfTrainsPassing(stationName);
-        List<String> trainIds = null;
+        List<String> trainIds = new ArrayList<>();
         for(Train train : trains){
             trainIds.add(train.getTrainId());
         }

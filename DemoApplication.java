@@ -10,7 +10,9 @@ import train.dp.StationRepo;
 import train.dp.TrainRepo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @SpringBootApplication
@@ -21,6 +23,7 @@ public class DemoApplication {
 
 	}
 	public void printList(List<Train> trains){
+		System.out.println(trains.size());
 		for(Train train: trains){
 			System.out.println(train.getTrainName());
 		}
@@ -36,7 +39,7 @@ public class DemoApplication {
 			trainManager.addNewTrainWithItsStations("2", "shivneri express", "nashik-pune-mumbai", "10", "8 pm", "8.05 pm");
 			trainManager.addNewTrainWithItsStations("3", "maharaja express", "nashik-pune", "10", "8 pm", "8.05 pm");
 
-			List<Train> trains = stationManager.getListOfTrainsPassing("nashik");
+			List<Train> trains = stationManager.getListOfTrainsPassingFromSourceToDestination("mumbai", "nashik");
 			printList(trains);
 //
 //			stationRepo.save(new Station("nashik", new ArrayList<Train>()));

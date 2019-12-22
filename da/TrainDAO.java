@@ -38,7 +38,7 @@ public class TrainDAO {
         for(String station : trainRoute.split("-")){
            if(stationRepo.findById(station).isPresent())
             {
-                System.out.println(station+" ***************");
+                System.out.println(station+ " here");
                 Station stn = stationRepo.findById(station).get();
                 stn.getTrains().add(train);
                 stationRepo.save(stn);
@@ -57,8 +57,8 @@ public boolean addNewTrainWithItsStations(String trainId, String trainName,
 
             saveTrainRouteToStationRepo(trainRoute);
 			Train train1 = 	new Train(trainId, trainName, trainRoute, trainCapacity, arrivalAtStartStation,departureFromStartStation, new ArrayList<TrainBooking>(), new ArrayList<Station>());
-			train1.getBookings().add(new TrainBooking("1", "abhishek","22", "Male","b","d","21-12-19"));
-			train1.getBookings().add(new TrainBooking("3", "bibek","22", "Male","c","d","20-12-19"));
+//			train1.getBookings().add(new TrainBooking("1", "abhishek","22", "Male","b","d","21-12-19"));
+//			train1.getBookings().add(new TrainBooking("3", "bibek","22", "Male","c","d","20-12-19"));
 			saveTrainStationsToTrainStationList(train1, trainRoute);
 			trainRepo.save(train1);
 			saveTrainToStationsInTrainRoute(train1, trainRoute);
@@ -80,28 +80,13 @@ public void doBooking(String trainId, String seatId, String passengerName, Strin
 
 }
 
-public void addStationsToTrain_stations(Train train, String trainRoute){
-        for(String station: trainRoute.split("-")){
-            if(stationRepo.findById(station).isPresent())
-            train.getStations().add(stationRepo.findById(station).get());
-        }
-}
+
 public boolean checkIfTrainExists(String trainId){
     if(trainRepo.findById(trainId).isPresent())
         return true;
     else return false;
 }
-public void addStationsToStation_station(String trainRoute){
-    for(String station: trainRoute.split("-"))
-    {
-        new StationDao(trainRepo, stationRepo).addStation(station);
-    }
-}
-public void addTrainToStation_trains(String trainRoute, Train train){
-    for(String station: trainRoute.split("-")){
-        stationRepo.findById(station).get().getTrains().add(train);
-    }
-}
+
 
 
 
