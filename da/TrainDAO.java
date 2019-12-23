@@ -62,8 +62,6 @@ public boolean addNewTrainWithItsStations(String trainId, String trainName,
             else {
                 saveTrainRouteToStationRepo(trainRoute);
                 Train train1 = new Train(trainId, trainName, trainRoute, trainCapacity, arrivalAtStartStation, departureFromStartStation, new ArrayList<TrainBooking>(), new ArrayList<Station>());
-//			train1.getBookings().add(new TrainBooking("1", "abhishek","22", "Male","b","d","21-12-19"));
-//			train1.getBookings().add(new TrainBooking("3", "bibek","22", "Male","c","d","20-12-19"));
                 saveTrainStationsToTrainStationList(train1, trainRoute);
                 trainRepo.save(train1);
                 saveTrainToStationsInTrainRoute(train1, trainRoute);

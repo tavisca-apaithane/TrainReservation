@@ -33,14 +33,15 @@ public class DemoApplication {
 	public CommandLineRunner demo(TrainRepo trainRepo, StationRepo stationRepo){
 		return (args)-> {
 
-			TrainDAO trainManager = new TrainDAO(trainRepo, stationRepo);
-			StationDao stationManager = new StationDao(trainRepo, stationRepo);
-			trainManager.addNewTrainWithItsStations("1", "sahyadri express", "nashik-pune-mumbai-delhi", "10", "8 pm", "8.05 pm");
-			trainManager.addNewTrainWithItsStations("2", "shivneri express", "nashik-pune-mumbai", "10", "8 pm", "8.05 pm");
-			trainManager.addNewTrainWithItsStations("3", "maharaja express", "nashik-pune", "10", "8 pm", "8.05 pm");
 
-			List<Train> trains = stationManager.getListOfTrainsPassingFromSourceToDestination("nashik", "mumbai");
-			printList(trains);
+//			TrainDAO trainManager = new TrainDAO(trainRepo, stationRepo);
+//			StationDao stationManager = new StationDao(trainRepo, stationRepo);
+//			trainManager.addNewTrainWithItsStations("1", "sahyadri express", "nashik-pune-mumbai-delhi", "10", "8 pm", "8.05 pm");
+//			trainManager.addNewTrainWithItsStations("2", "shivneri express", "nashik-pune-mumbai", "10", "8 pm", "8.05 pm");
+//			trainManager.addNewTrainWithItsStations("3", "maharaja express", "nashik-pune", "10", "8 pm", "8.05 pm");
+//
+//			List<Train> trains = stationManager.getListOfTrainsPassingFromSourceToDestination("nashik", "mumbai");
+//			printList(trains);
 //
 //			stationRepo.save(new Station("nashik", new ArrayList<Train>()));
 //			stationRepo.save(new Station("pune", new ArrayList<Train>()));
