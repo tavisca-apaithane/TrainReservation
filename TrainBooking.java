@@ -6,8 +6,7 @@ import javax.persistence.Id;
 
 @Embeddable
 public class TrainBooking {
-//    @ManyToOne
-//    private String trainId;;
+
     private String seatId;
     private String passengerName;
     private String passengerAge;

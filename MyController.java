@@ -17,6 +17,18 @@ public class MyController {
     @GetMapping("/train")
     public String getTrain(){
 
-        return Integer.toString(new TicketAllocationService(trainRepo).getSeatNumber("1","22-12-19"));
+        TrainDAO trainManager = new TrainDAO(trainRepo, stationRepo);
+        Train train = trainManager.getTrain("1");
+        TicketAllocationService ticket = new TicketAllocationService(trainRepo);
+        int seatId = ticket.getSeatNumber("1", "20-12-19");
+        System.out.println(seatId);
+        boolean result = false;
+        if(seatId>0) {
+            result = true;
+            train.getBookings().add(new TrainBooking(Integer.toString(seatId), "abhishek", "22", "Male", "pune", "mumbai", "20-12-19"));
+            trainRepo.save(train);
+        }
+        System.out.println(result);
+        return Integer.toString(new TicketAllocationService(trainRepo).getSeatNumber("1","20-12-19"));
     }
 }
