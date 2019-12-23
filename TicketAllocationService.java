@@ -4,6 +4,8 @@ package train;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import train.dp.TrainRepo;
+import train.models.Train;
+import train.models.TrainBooking;
 
 
 import java.util.Optional;
@@ -61,13 +63,13 @@ public class TicketAllocationService {
         }
     }
         private void printData(Integer[] arr){
+            System.out.println("in TicketAllocationService printData");
             for(int i=0;i<arr.length;i++)
                 System.out.print(arr[i]+ " ");
         }
-    public int getSourceToDestinationCapacity(String source, String destination){
-       int index = 0;
-       int min = 9999;
-       int flag=0;
+    public int getSourceToDestinationCapacity(String date, String source, String destination){
+        loadSeatAvailabilityArray(date);
+        int min = 9999;
        int startInd=0;
        for(int i=0;i<calculator.trainRoute.length;i++)
        {
@@ -79,7 +81,6 @@ public class TicketAllocationService {
        }
         for(int i=(startInd+1);i< calculator.trainRoute.length; i++){
 
-                System.out.println(calculator.numberOfSeatsPerRoute[i]);
                 if(min>calculator.numberOfSeatsPerRoute[i])
                     min = calculator.numberOfSeatsPerRoute[i];
 
@@ -88,6 +89,16 @@ public class TicketAllocationService {
         }
         return min;
 
+    }
+    public String getSeatId(String date, String source, String destination){
+        int seatId = -1;
+        loadSeatAvailabilityArray(date);
+        int capacity = getSourceToDestinationCapacity(date, source, destination);
+        if(capacity>0){
+            seatId = Integer.parseInt(train.getTrainCapacity());
+            train.setTrainCapacity(Integer.toString((seatId-1)));
+        }
+        return Integer.toString(seatId);
     }
 
 

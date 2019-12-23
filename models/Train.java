@@ -1,4 +1,4 @@
-package train;
+package train.models;
 
 import javax.persistence.*;
 import java.util.List;

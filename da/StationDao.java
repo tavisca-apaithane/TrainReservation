@@ -1,8 +1,7 @@
 package train.da;
 
-import train.Station;
-import train.Train;
-import train.TrainBooking;
+import train.models.Station;
+import train.models.Train;
 import train.dp.StationRepo;
 import train.dp.TrainRepo;
 
@@ -32,7 +31,7 @@ public class StationDao {
             }
     }
 
-    public List<Train> getListOfTrainsPassing(String stationName){
+    private List<Train> getListOfTrainsPassing(String stationName){
         List<Train> trains = null;
         if(stationRepo.findById(stationName).isPresent()) {
             trains = stationRepo.findById(stationName).get().getTrains();
@@ -44,7 +43,7 @@ public class StationDao {
         return trains;
     }
 
-    public List<String> getListOfIdsOfTrainsPassing(String stationName){
+    private List<String> getListOfIdsOfTrainsPassing(String stationName){
         List<Train> trains = this.getListOfTrainsPassing(stationName);
         List<String> trainIds = new ArrayList<>();
         for(Train train : trains){
@@ -78,7 +77,7 @@ public class StationDao {
         return result;
     }
 
-    public boolean checkDirection(String trainId, String source, String destination) {
+    private boolean checkDirection(String trainId, String source, String destination) {
 
         Train train = new TrainDAO(trainRepo, stationRepo).getTrain(trainId);
         String[] route = train.getTrainRoute().split("-");
@@ -92,7 +91,7 @@ public class StationDao {
 
     }
 
-    public int getIndex(String[] array, String target){
+    private int getIndex(String[] array, String target){
         int length = array.length;
         for(int i = 0; i<length; i++){
             if(array[i].equals(target)){

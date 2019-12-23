@@ -45,7 +45,4 @@ public class SeatAvailabilityCalculator {
         return min;
     }
 
-    private void loadRequiredData() {
-
-    }
 }
